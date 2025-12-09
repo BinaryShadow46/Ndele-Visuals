@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndele Visuals | Photography Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --primary-dark: #0369a1;
+            --secondary-color: #f59e0b;
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-dark: #0f172a;
+            --text-light: #f8fafc;
+            --shadow: 0 8px 32px rgba(14, 165, 233, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Glassmorphism Base Styles */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .scrolled {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 20px rgba(14, 165, 233, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .logo .camera-icon {
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            left: 50%;
+            bottom: 0;
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 70%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 5% 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-container {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(245, 158, 11, 0.2));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 5rem;
+            font-weight: 700;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('profile.jpeg') center/cover no-repeat;
+            opacity: 0.7;
+            border-radius: 50%;
+        }
+
+        .profile-img span {
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .camera-floater {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .camera-1 {
+            top: 20px;
+            right: 40px;
+            animation-delay: 0s;
+        }
+
+        .camera-2 {
+            bottom: 40px;
+            left: 20px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: #475569;
+            max-width: 600px;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(14, 165, 233, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Specialties Section */
+        .specialties-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .specialty-card {
+            padding: 2.5rem 2rem;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .specialty-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .specialty-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .specialty-card p {
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        /* Portfolio Gallery */
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.2);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-category {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .skill-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .skill-description {
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-level {
+            height: 8px;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            padding: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(245, 158, 11, 0.1));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-dark);
+        }
+
+        .contact-details p {
+            color: #475569;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(245, 158, 11, 0.1));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(14, 165, 233, 0.1);
+            margin-top: 3rem;
+            color: #475569;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Modal for Portfolio Images */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--glass-bg);
+                backdrop-filter: blur(15px);
+                width: 250px;
+                padding: 2rem;
+                border-radius: 20px;
+                transition: right 0.5s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                right: 5%;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding-top: 8rem;
+            }
+            
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+            
+            .profile-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="mainHeader">
+        <a href="#" class="logo">
+            <i class="fas fa-camera camera-icon"></i>
+            Ndele<span>Visuals</span>
+        </a>
+        <div class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#specialties">Specialties</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="tagline glass-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Photographer & Visual Storyteller from Tanzania</span>
+            </div>
+            <h1>Capturing Moments, Creating <span class="highlight">Visual Stories</span></h1>
+            <p class="hero-description">
+                With a keen eye for detail and 1 year of visual expertise, I specialize in transforming ordinary moments into extraordinary memories. My photography tells stories that resonate, connecting people through powerful imagery.
+            </p>
+            <div class="cta-buttons">
+                <a href="#portfolio" class="btn btn-primary">
+                    <i class="fas fa-images"></i> View Portfolio
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-calendar-alt"></i> Book a Session
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="profile-container glass-card">
+                <div class="profile-img">
+                    <span>NV</span>
+                </div>
+                <div class="camera-floater camera-1">
+                    <i class="fas fa-camera-retro"></i>
+                </div>
+                <div class="camera-floater camera-2">
+                    <i class="fas fa-video"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialties Section -->
+    <section id="specialties">
+        <h2 class="section-title">My Specialties</h2>
+        <div class="specialties-container">
+            <div class="specialty-card glass-card">
+                <div class="specialty-icon">
+                    <i class="fas fa-ring"></i>
+                </div>
+                <h3>Wedding Photography</h3>
+                <p>Capturing the most precious moments of your special day with emotion, elegance, and authenticity. Every smile, tear, and glance preserved forever.</p>
+            </div>
+            <div class="specialty-card glass-card">
+                <div class="specialty-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Portrait & Lifestyle</h3>
+                <p>Authentic portraits that reveal personality and connection. From individual headshots to family gatherings, I capture genuine moments.</p>
+            </div>
+            <div class="specialty-card glass-card">
+                <div class="specialty-icon">
+                    <i class="fas fa-city"></i>
+                </div>
+                <h3>Urban & Landscape</h3>
+                <p>Exploring cities and nature through the lens. Architecture, cityscapes, and natural landscapes captured with artistic vision.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section id="portfolio">
+        <h2 class="section-title">Portfolio Highlights</h2>
+        <div class="portfolio-container">
+            <div class="portfolio-item glass-card">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wedding Photography" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Wedding</div>
+                    <div class="portfolio-title">Eternal Vows</div>
+                </div>
+            </div>
+            <div class="portfolio-item glass-card">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Portrait Photography" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Portrait</div>
+                    <div class="portfolio-title">Urban Portraits</div>
+                </div>
+            </div>
+            <div class="portfolio-item glass-card">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Landscape Photography" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Landscape</div>
+                    <div class="portfolio-title">Mountain Horizons</div>
+                </div>
+            </div>
+            <div class="portfolio-item glass-card">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Event Photography" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Event</div>
+                    <div class="portfolio-title">Corporate Gathering</div>
+                </div>
+            </div>
+            <div class="portfolio-item glass-card">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Product Photography" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Product</div>
+                    <div class="portfolio-title">Artisanal Crafts</div>
+                </div>
+            </div>
+            <div class="portfolio-item glass-card">
+                <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Street Photography" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <div class="portfolio-category">Street</div>
+                    <div class="portfolio-title">City Life</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Photography Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card glass-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="skill-name">Creative Vision</div>
+                </div>
+                <p class="skill-description">Developing unique concepts and seeing extraordinary perspectives in ordinary scenes to create visually compelling narratives.</p>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 95%"></div>
+                </div>
+            </div>
+            <div class="skill-card glass-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="skill-name">Visual Composition</div>
+                </div>
+                <p class="skill-description">Mastery of framing, lighting, and perspective to create balanced, engaging photographs that draw viewers into the scene.</p>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 92%"></div>
+                </div>
+            </div>
+            <div class="skill-card glass-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <div class="skill-name">Post-Processing</div>
+                </div>
+                <p class="skill-description">Expert editing with Adobe Creative Suite to enhance images while maintaining authenticity and natural beauty.</p>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="skill-card glass-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="skill-name">Client Direction</div>
+                </div>
+                <p class="skill-description">Guiding subjects to feel comfortable and natural in front of the camera, resulting in authentic, expressive portraits.</p>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 88%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Create Together</h2>
+        <div class="contact-container">
+            <div class="contact-info glass-card">
+                <h3 style="margin-bottom: 2rem; color: var(--text-dark); font-family: 'Playfair Display', serif;">Get In Touch</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>ndelefotinati64@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Portfolio</h4>
+                        <p>www.bahance.net/fotinatindele</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>Based in Tanzania<br>Available for travel worldwide</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--text-dark);">Follow My Work</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-500px"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info glass-card">
+                <h3 style="margin-bottom: 2rem; color: var(--text-dark); font-family: 'Playfair Display', serif;">Book a Session</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.7; color: #475569;">Ready to capture your special moments? Let's discuss your vision and create something beautiful together.</p>
+                
+                <div style="background: rgba(14, 165, 233, 0.05); padding: 1.5rem; border-radius: 15px; margin-top: 2rem;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Available Services:</h4>
+                    <ul style="list-style: none; color: #475569;">
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                            <span>Wedding & Engagement Photography</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                            <span>Portrait & Family Sessions</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                            <span>Commercial & Product Photography</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                            <span>Event Coverage</span>
+                        </li>
+                        <li style="margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-color);"></i>
+                            <span>Photo Editing & Retouching</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <a href="mailto: ndelefotinati64@gmail.com" class="btn btn-primary" style="margin-top: 2rem; display: inline-flex;">
+                    <i class="fas fa-paper-plane"></i> Send Inquiry
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Ndele<span>Visuals</span></div>
+        <p>Capturing the world, one frame at a time</p>
+        <p class="copyright">© 2025 Ndele Visuals. All photography rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Fotinati Ndele | Photographer & Visual Storyteller</p>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <div class="close-modal" id="closeModal">&times;</div>
+        <div class="modal-content">
+            <img src="" alt="" class="modal-img" id="modalImage">
+        </div>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Portfolio image modal
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('.portfolio-img').getAttribute('src');
+                modalImage.setAttribute('src', imgSrc);
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Add subtle animation to specialty cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all specialty cards
+        document.querySelectorAll('.specialty-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Add current year to footer
+        document.querySelector('.copyright').innerHTML = `© ${new Date().getFullYear()} Ndele Visuals. All photography rights reserved.`;
+    </script>
+</body>
+</html>
